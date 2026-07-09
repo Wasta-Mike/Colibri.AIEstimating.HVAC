@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { api } from "../api.js";
+import { api, uploadUrl } from "../api.js";
 
 const TYPE_COLORS = {
   diffuser: "#2b8a3e",
@@ -179,7 +179,7 @@ export default function CaptureReview({ session, capture, stepId, onClose, onCap
           >
             <img
               ref={imgRef}
-              src={`/uploads/captures/${capture.image_path}`}
+              src={uploadUrl(capture.image_path)}
               alt={capture.label}
               onClick={onImageClick}
               draggable={false}

@@ -1,4 +1,12 @@
-const BASE = "/api";
+// In dev, Vite proxies /api and /uploads to the local backend (see vite.config.js).
+// In production the frontend and backend are deployed separately, so point at
+// the deployed backend's origin via VITE_API_URL (e.g. https://your-api.up.railway.app).
+export const API_ORIGIN = import.meta.env.VITE_API_URL || "";
+const BASE = `${API_ORIGIN}/api`;
+
+export function uploadUrl(path) {
+  return `${API_ORIGIN}/uploads/captures/${path}`;
+}
 
 async function req(method, url, body) {
   const opts = { method, headers: {} };

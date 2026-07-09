@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
-import { api } from "../api.js";
+import { api, uploadUrl } from "../api.js";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -231,7 +231,7 @@ export default function PlansTab({ session, captures, onCapturesChanged, onOpenC
           {captures.length === 0 && <p className="muted small">No captures yet.</p>}
           {captures.map((c) => (
             <div key={c.id} className="gallery-item">
-              <img src={`/uploads/captures/${c.image_path}`} alt={c.label} />
+              <img src={uploadUrl(c.image_path)} alt={c.label} />
               <div className="gallery-item-meta">
                 <strong>{c.label}</strong>
                 <span className="muted small">
